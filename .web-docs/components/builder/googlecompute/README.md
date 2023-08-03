@@ -418,6 +418,49 @@ build {
 ```
 
 
+### Separate Image Project Example
+
+This is an example of using the `image_project_id` configuration option to create
+the generated image in a different GCP project than the one used to create the virtual machine. Make sure that Packer has permission in the target project to manage images, the `Compute Storage Admin` role will grant the desired permissions.
+
+<Tabs>
+<Tab heading="JSON">
+
+```json
+{
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "my project",
+      "image_project_id": "my image target project",
+      "source_image": "debian-9-stretch-v20200805",
+      "ssh_username": "packer",
+      "zone": "us-central1-a"
+    }
+  ]
+}
+```
+
+</Tab>
+<Tab heading="HCL2">
+
+```hcl
+source "googlecompute" "basic-example" {
+  project_id = "my project"
+  image_project_id = "my image target project"
+  source_image = "debian-9-stretch-v20200805"
+  ssh_username = "packer"
+  zone = "us-central1-a"
+}
+
+build {
+  sources = ["sources.googlecompute.basic-example"]
+}
+```
+
+</Tab>
+</Tabs>
+
 ## Configuration Reference
 
 Configuration options are organized below into two categories: required and
@@ -718,6 +761,8 @@ builder.
 
 - `image_guest_os_features` ([]string) - Guest OS features to apply to the created image.
 
+- `image_project_id` (string) - The project ID to push the build image into. Defaults to project_id.
+
 - `image_storage_locations` ([]string) - Storage location, either regional or multi-regional, where snapshot
   content is to be stored and only accepts 1 value. Always defaults to a nearby regional or multi-regional
   location.
@@ -742,7 +787,7 @@ builder.
 
 - `labels` (map[string]string) - Key/value pair labels to apply to the launched instance.
 
-- `machine_type` (string) - The machine type. Defaults to "n1-standard-1".
+- `machine_type` (string) - The machine type. Defaults to "e2-standard-2".
 
 - `metadata` (map[string]string) - Metadata applied to the launched instance.
   All metadata configuration values are expected to be of type string.
