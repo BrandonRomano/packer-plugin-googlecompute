@@ -34,7 +34,7 @@ jobs:
       - name: Notify Release
         uses: ./integration-release-action
         with:
-          integration_identifier: 'packer/BrandonRomano/googlecompute'
+          integration_identifier: 'packer/hashicorp/googlecompute'
           release_version: ${{ github.ref_name }}
           release_sha: ${{ github.ref }}
           github_token: ${{ secrets.GITHUB_TOKEN }}

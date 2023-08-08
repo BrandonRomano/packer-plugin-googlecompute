@@ -10,7 +10,7 @@ It is possible to build images from scratch, but not with the `googlecompute`
 Packer builder. The process is recommended only for advanced users, please see
 [Building GCE Images from Scratch](https://cloud.google.com/compute/docs/tutorials/building-images)
 and the [Google Compute Import
-Post-Processor](/packer/integrations/BrandonRomano/googlecompute/latest/components/post-processor/googlecompute-import) for more
+Post-Processor](/packer/integrations/hashicorp/googlecompute/latest/components/post-processor/googlecompute-import) for more
 information.
 
 ## Plugin Installation
